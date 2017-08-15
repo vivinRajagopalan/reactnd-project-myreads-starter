@@ -8,18 +8,35 @@ import './App.css';
 class SearchBooks extends Component{
 
 	state ={
-		books:[]
+		books: [],
+		allbooks: []
 	}
 
+	componentDidMount(){
+		BooksAPI.getAll().then((allbooks) =>{
+			this.setState({
+				allbooks: allbooks
+			})
+		})
+	}
 
 	searchBooksAsOneTypes = (e) => {
 		const query = e.target.value;
-		{query && 
-			BooksAPI.search(query, 10).then((books)=>{
-				this.setState({books})
-			})
+		const allbooks = this.state.allbooks;
+		var books=[];
+		{query &&
+			BooksAPI.search(query, 10).then((searchBooks)=>{
+				for(var searchBook of searchBooks){
+					for(var shelfBook of allbooks){
+						if(shelfBook.id === searchBook.id){
+							searchBook.shelf = shelfBook.shelf;
+						}
+					}
+					books.push(searchBook);
+				}
+				this.setState({books: books})
+		})
 		}
-
 	}
 
 	updateBooksCategory = (books) => {
@@ -31,6 +48,7 @@ class SearchBooks extends Component{
 	render(){
 
 		let searchBookResults = this.state.books;
+
 		return(
 
 			  <div className="search-books">
@@ -44,8 +62,8 @@ class SearchBooks extends Component{
               	<ol className="books-grid">
               		<li>
               			{searchBookResults && !searchBookResults.error && searchBookResults.map((book)=>
-              				<Book key={book.id} book={book} updatebooks={this.updateBooksCategory}></Book>		
-              			
+              				<Book key={book.id} book={book} updatebooks={this.updateBooksCategory}></Book>
+
               			)}
               		</li>
 
