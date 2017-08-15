@@ -3,8 +3,8 @@ import './App.css'
 
 const SelectBookCategory = (props) =>(
 
-	<div className="book-shelf-changer">
-	    <select onChange={props.changeBookShelf}>
+	<div className="book-shelf-changer" >
+	    <select onChange={props.changeBookShelf} value={props.shelf}>
 	        <option value="none">Move to...</option>
 	        <option value="currentlyReading">Currently Reading</option>
 	        <option value="wantToRead">Want to Read</option>
