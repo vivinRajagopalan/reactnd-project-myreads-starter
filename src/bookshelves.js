@@ -9,10 +9,23 @@ import Book from './books.js';
  		updatebooks: PropTypes.func.isRequired,
  		title: PropTypes.string.isRequired
  	}
+
+
+  updateTitle(title){
+
+    if (title === "read"){
+      return "Read"
+    } else if (title === "currentlyReading"){
+      return "Currently Reading"
+    } else if (title === "wantToRead"){
+      return "Want To Read"
+    }
+  }
 	render(){
+    const title = this.props.title
 		return(
 			 <div className="bookshelf">
-                  <h2 className="bookshelf-title">{this.props.title}</h2>
+                  <h2 className="bookshelf-title">{this.updateTitle(title)}</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       
