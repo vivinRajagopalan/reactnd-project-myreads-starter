@@ -26,14 +26,14 @@ import PropTypes from 'prop-types';
                     <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: 'url(' + this.props.book.imageLinks.smallThumbnail + ')' }}>
                        <SelectBookCategory changeBookShelf={this.onChangeBookShelf} shelf={this.props.book.shelf}></SelectBookCategory>
                     </div>
-                </div>    
+                </div>
                 <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">{this.props.book.author}</div>
-            	
-            </div>
+
+      </div>
           )
     }
-    
-   }         	
+
+   }
 
 export default Book
