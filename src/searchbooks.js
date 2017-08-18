@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI';
 import { Link } from 'react-router-dom';
 import Book from './books.js';
 import './App.css';
+import keyIndex from 'react-key-index';
 
 
 class SearchBooks extends Component{
@@ -26,16 +27,20 @@ class SearchBooks extends Component{
 		var books=[];
 		{query &&
 			BooksAPI.search(query, 10).then((searchBooks)=>{
-				for(var searchBook of searchBooks){
-					for(var shelfBook of allbooks){
-						if(shelfBook.id === searchBook.id){
-							searchBook.shelf = shelfBook.shelf;
+			if(!searchBooks.error)
+				{
+					for(var searchBook of searchBooks){
+						for(var shelfBook of allbooks){
+							if(shelfBook.id === searchBook.id){
+								searchBook.shelf = shelfBook.shelf;
+							}
 						}
+						books.push(searchBook);
 					}
-					books.push(searchBook);
-				}
-				this.setState({books: books})
-		})
+					this.setState({books: books})
+				}		
+			})
+
 		}
 	}
 
@@ -48,6 +53,7 @@ class SearchBooks extends Component{
 	render(){
 
 		let searchBookResults = this.state.books;
+		searchBookResults = keyIndex(searchBookResults,1);
 
 		return(
 
@@ -59,15 +65,26 @@ class SearchBooks extends Component{
               		</div>
             	</div>
               <div className="search-books-results">
+              <div className="list-books">
+              <div className="list-books-content">
+              <div>
+              <div className="bookshelf">
+               <div className="bookshelf-books">
               	<ol className="books-grid">
-              		<li>
+              		
               			{searchBookResults && !searchBookResults.error && searchBookResults.map((book)=>
+              				<li>
               				<Book key={book.id} book={book} updatebooks={this.updateBooksCategory}></Book>
-
+              				</li>
               			)}
-              		</li>
+              		
 
               	</ol>
+            	</div>
+            	</div>
+            	</div>
+            	</div>
+            	</div>
             	</div>
           	  </div>
 
