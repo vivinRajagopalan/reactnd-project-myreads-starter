@@ -1,5 +1,5 @@
 
-##What is this ?
+## What is this ?
 ------------------
 ```
 This project is a Sample React app which is a demo of a sample book application. The user can search a book and add it to the library. The user can fiddle the books into different category.
@@ -12,29 +12,29 @@ This project is a Sample React app which is a demo of a sample book application.
 This app uses a Books API from where the books are fetched. Its has all the rest end points that one needs for the basic functionality of the app
 ```
 
-#TODO - TESTING
+## TODO - TESTING
 --------------------
 ```
 Unit testing yet to be done.
 
 ```
 
-#Deployment
+## Deployment
 ---------------------
 ```
-All You need is NPM/YARN . Do a Npm build and a Npm start to get the app running #locally
+All You need is NPM/YARN . Do a Npm build and a Npm start to get the app running ## locally
 ```
 
-#Built With
+## Built With
 -----------------------
 ```
 1) React
 
 ```
 
-#Author
+## Author
 -----------------------
 ```
-#Vivin Rajagopalan
+## Vivin Rajagopalan
 
 ```
